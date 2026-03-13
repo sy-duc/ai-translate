@@ -92,5 +92,10 @@
     "no_engine_key": "API key for \"{engine}\" is not configured. Please go to Settings to enter your API key.",
     "no_files_selected": "No files selected for translation.",
     "clear_files": "Clear list",
-    "btn_clear_files": "Clear list"
+    "btn_clear_files": "Clear list",
+    "glossary_lang_same_warning": "Source and target language must be different.",
+    "glossary_import_success": "Imported {count} terms (bidirectional).",
+    "glossary_export_success": "Exported {count} entries to {filename}.",
+    "settings_test_not_implemented": "API key test for {engine}: Not implemented yet.",
+    "settings_download_not_implemented": "Model download: Not implemented yet."
 }

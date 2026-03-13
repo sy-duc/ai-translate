@@ -92,5 +92,10 @@
     "no_engine_key": "「{engine}」のAPIキーが設定されていません。設定画面でAPIキーを入力してください。",
     "no_files_selected": "翻訳するファイルが選択されていません。",
     "clear_files": "リストをクリア",
-    "btn_clear_files": "リストをクリア"
+    "btn_clear_files": "リストをクリア",
+    "glossary_lang_same_warning": "原文言語と対象言語は異なる必要があります。",
+    "glossary_import_success": "{count}件の用語をインポートしました（双方向）。",
+    "glossary_export_success": "{count}件の用語を{filename}にエクスポートしました。",
+    "settings_test_not_implemented": "{engine}のAPIキーテスト：未実装です。",
+    "settings_download_not_implemented": "モデルダウンロード：未実装です。"
 }

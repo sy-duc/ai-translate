@@ -92,5 +92,10 @@
     "no_engine_key": "Chưa cấu hình API key cho engine \"{engine}\". Vui lòng vào Cài đặt để nhập API key.",
     "no_files_selected": "Chưa chọn file nào để dịch.",
     "clear_files": "Xóa danh sách",
-    "btn_clear_files": "Xóa danh sách"
+    "btn_clear_files": "Xóa danh sách",
+    "glossary_lang_same_warning": "Ngôn ngữ nguồn và ngôn ngữ đích phải khác nhau.",
+    "glossary_import_success": "Đã nhập {count} thuật ngữ (2 chiều).",
+    "glossary_export_success": "Đã xuất {count} thuật ngữ ra file {filename}.",
+    "settings_test_not_implemented": "Kiểm tra API key cho {engine}: Chưa triển khai.",
+    "settings_download_not_implemented": "Tải model: Chưa triển khai."
 }

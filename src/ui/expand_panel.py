@@ -42,11 +42,12 @@ class ExpandPanel(QWidget):
         main_layout.addWidget(separator)
 
         # Group box for all advanced options
-        group = QGroupBox(t("advanced_group"))
+        self._group = QGroupBox(t("advanced_group"))
         group_layout = QVBoxLayout()
 
         # --- Section 1: Document domain (checkboxes, multi-select) ---
-        group_layout.addWidget(QLabel(t("domain_label")))
+        self._domain_label = QLabel(t("domain_label"))
+        group_layout.addWidget(self._domain_label)
         domain_layout = QHBoxLayout()
         # Arrange checkboxes in a flow layout (2 rows)
         domain_left = QVBoxLayout()
@@ -69,7 +70,8 @@ class ExpandPanel(QWidget):
         group_layout.addSpacing(8)
 
         # --- Section 2: Translation style (radio, single-select) ---
-        group_layout.addWidget(QLabel(t("style_label")))
+        self._style_label = QLabel(t("style_label"))
+        group_layout.addWidget(self._style_label)
         style_grid = QGridLayout()
         style_grid.setColumnStretch(0, 1)
         style_grid.setColumnStretch(1, 1)
@@ -89,7 +91,8 @@ class ExpandPanel(QWidget):
         group_layout.addSpacing(8)
 
         # --- Section 3: Translation engine (radio, single-select) ---
-        group_layout.addWidget(QLabel(t("engine_label")))
+        self._engine_label = QLabel(t("engine_label"))
+        group_layout.addWidget(self._engine_label)
         engine_grid = QGridLayout()
         engine_grid.setColumnStretch(0, 1)
         engine_grid.setColumnStretch(1, 1)
@@ -106,8 +109,8 @@ class ExpandPanel(QWidget):
 
         group_layout.addLayout(engine_grid)
 
-        group.setLayout(group_layout)
-        main_layout.addWidget(group)
+        self._group.setLayout(group_layout)
+        main_layout.addWidget(self._group)
 
     # --- Public API to get current selections ---
 
@@ -132,6 +135,10 @@ class ExpandPanel(QWidget):
     def retranslate_ui(self):
         """Update all labels when UI language changes."""
         t = self._i18n.t
+        self._group.setTitle(t("advanced_group"))
+        self._domain_label.setText(t("domain_label"))
+        self._style_label.setText(t("style_label"))
+        self._engine_label.setText(t("engine_label"))
         for key, i18n_key, _ in DOMAINS:
             if key in self._domain_checkboxes:
                 self._domain_checkboxes[key].setText(t(i18n_key))

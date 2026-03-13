@@ -163,7 +163,7 @@ class SettingsDialog(QDialog):
         QMessageBox.information(
             self,
             self._i18n.t("confirm"),
-            f"API key test for {engine_key}: Not implemented yet.",
+            self._i18n.t("settings_test_not_implemented", engine=engine_key),
         )
 
     def _on_download_model(self):
@@ -172,7 +172,7 @@ class SettingsDialog(QDialog):
         QMessageBox.information(
             self,
             self._i18n.t("settings_offline_model"),
-            "Model download: Not implemented yet.",
+            self._i18n.t("settings_download_not_implemented"),
         )
 
     def _on_save(self):

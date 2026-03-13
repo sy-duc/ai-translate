@@ -194,7 +194,7 @@ class GlossaryDialog(QDialog):
         if source_lang == target_lang:
             QMessageBox.warning(
                 self, self._i18n.t("warning"),
-                "Source and target language must be different.",
+                self._i18n.t("glossary_lang_same_warning"),
             )
             return
 
@@ -318,7 +318,8 @@ class GlossaryDialog(QDialog):
 
             self._refresh_table(self._search_input.text())
             QMessageBox.information(
-                self, "Import", f"Imported {count} terms (bidirectional).",
+                self, "Import",
+                self._i18n.t("glossary_import_success", count=count),
             )
         except Exception as e:
             QMessageBox.critical(self, self._i18n.t("error"), str(e))
@@ -339,7 +340,10 @@ class GlossaryDialog(QDialog):
                     writer.writerow(entry)
 
             QMessageBox.information(
-                self, "Export", f"Exported {len(self._entries)} entries to {os.path.basename(file_path)}.",
+                self, "Export",
+                self._i18n.t("glossary_export_success",
+                             count=len(self._entries),
+                             filename=os.path.basename(file_path)),
             )
         except Exception as e:
             QMessageBox.critical(self, self._i18n.t("error"), str(e))
