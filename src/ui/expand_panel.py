@@ -8,7 +8,7 @@ Shown/hidden when user clicks "Expand >>" / "<< Collapse".
 from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, QGroupBox,
     QCheckBox, QRadioButton, QButtonGroup, QLabel,
-    QFrame,
+    QFrame, QGridLayout,
 )
 
 from src.constants import DOMAINS, STYLES, ENGINES
@@ -70,37 +70,41 @@ class ExpandPanel(QWidget):
 
         # --- Section 2: Translation style (radio, single-select) ---
         group_layout.addWidget(QLabel(t("style_label")))
-        style_layout = QHBoxLayout()
+        style_grid = QGridLayout()
+        style_grid.setColumnStretch(0, 1)
+        style_grid.setColumnStretch(1, 1)
+        style_grid.setColumnStretch(2, 1)
         style_btn_group = QButtonGroup(self)
 
-        for key, i18n_key in STYLES:
+        for i, (key, i18n_key) in enumerate(STYLES):
             radio = QRadioButton(t(i18n_key))
             if key == "default":
                 radio.setChecked(True)
             style_btn_group.addButton(radio)
             self._style_radios[key] = radio
-            style_layout.addWidget(radio)
+            style_grid.addWidget(radio, i // 3, i % 3)
 
-        style_layout.addStretch()
-        group_layout.addLayout(style_layout)
+        group_layout.addLayout(style_grid)
 
         group_layout.addSpacing(8)
 
         # --- Section 3: Translation engine (radio, single-select) ---
         group_layout.addWidget(QLabel(t("engine_label")))
-        engine_layout = QHBoxLayout()
+        engine_grid = QGridLayout()
+        engine_grid.setColumnStretch(0, 1)
+        engine_grid.setColumnStretch(1, 1)
+        engine_grid.setColumnStretch(2, 1)
         engine_btn_group = QButtonGroup(self)
 
-        for key, i18n_key, _ in ENGINES:
+        for i, (key, i18n_key, _) in enumerate(ENGINES):
             radio = QRadioButton(t(i18n_key))
             if key == "offline":
                 radio.setChecked(True)
             engine_btn_group.addButton(radio)
             self._engine_radios[key] = radio
-            engine_layout.addWidget(radio)
+            engine_grid.addWidget(radio, i // 3, i % 3)
 
-        engine_layout.addStretch()
-        group_layout.addLayout(engine_layout)
+        group_layout.addLayout(engine_grid)
 
         group.setLayout(group_layout)
         main_layout.addWidget(group)

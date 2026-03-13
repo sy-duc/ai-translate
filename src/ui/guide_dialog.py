@@ -11,41 +11,41 @@ from src.i18n import I18nManager
 # Guide content per language (HTML format for QTextBrowser)
 _GUIDE_CONTENT = {
     "vi": """
-<h2>Huong dan su dung AI Translate</h2>
+<h2>Hướng dẫn sử dụng AI Translate</h2>
 
-<h3>1. Dich tai lieu co ban</h3>
+<h3>1. Dịch tài liệu cơ bản</h3>
 <ol>
-  <li>Nhan <b>Chon file</b> de chon 1 hoac nhieu file can dich</li>
-  <li>Chon <b>Ngon ngu dich</b> (Tieng Viet, English, Japanese)</li>
-  <li>Nhan <b>Dich</b></li>
-  <li>Doi hoan tat, xem ket qua trong dialog thong bao</li>
+  <li>Nhấn <b>Chọn file</b> để chọn 1 hoặc nhiều file cần dịch</li>
+  <li>Chọn <b>Ngôn ngữ đích</b> (Tiếng Việt, English, Japanese)</li>
+  <li>Nhấn <b>Dịch</b></li>
+  <li>Đợi hoàn tất, xem kết quả trong dialog thông báo</li>
 </ol>
 
-<h3>2. Tuy chon nang cao</h3>
+<h3>2. Tùy chọn nâng cao</h3>
 <ol>
-  <li>Nhan <b>Mo rong >></b> de hien thi them tuy chon</li>
-  <li><b>Muc dich tai lieu:</b> chon 1 hoac nhieu linh vuc (CNTT, Phap luat, Y te...)</li>
-  <li><b>Van phong:</b> chon kieu dich (Mac dinh, Trang trong, Ngan gon...)</li>
-  <li><b>Che do dich:</b> chon engine (Offline, OpenAI, Claude...)</li>
+  <li>Nhấn <b>Mở rộng >></b> để hiển thị thêm tùy chọn</li>
+  <li><b>Mục đích tài liệu:</b> chọn 1 hoặc nhiều lĩnh vực (CNTT, Pháp luật, Y tế...)</li>
+  <li><b>Văn phong:</b> chọn kiểu dịch (Mặc định, Trang trọng, Ngắn gọn...)</li>
+  <li><b>Chế độ dịch:</b> chọn engine (Offline, OpenAI, Claude...)</li>
 </ol>
 
-<h3>3. Cau hinh API Key</h3>
+<h3>3. Cấu hình API Key</h3>
 <ol>
-  <li>Nhan bieu tuong <b>cai dat</b> (banh rang) o goc tren phai</li>
-  <li>Nhap API key cho engine ban muon su dung</li>
-  <li>Nhan <b>Kiem tra</b> de xac nhan key hop le</li>
-  <li>Nhan <b>Luu</b></li>
+  <li>Nhấn biểu tượng <b>cài đặt</b> (bánh răng) ở góc trên phải</li>
+  <li>Nhập API key cho engine bạn muốn sử dụng</li>
+  <li>Nhấn <b>Kiểm tra</b> để xác nhận key hợp lệ</li>
+  <li>Nhấn <b>Lưu</b></li>
 </ol>
 
-<h3>4. Bang thuat ngu</h3>
+<h3>4. Bảng thuật ngữ</h3>
 <ol>
-  <li>Nhan <b>Bang thuat ngu</b> o thanh duoi cung</li>
-  <li>Them thuat ngu: chon ngon ngu nguon/dich, nhap thuat ngu, nhan <b>Them / Cap nhat</b></li>
-  <li>Thuat ngu duoc ap dung 2 chieu tu dong</li>
-  <li>Ho tro <b>Import/Export CSV</b> de chia se</li>
+  <li>Nhấn <b>Bảng thuật ngữ</b> ở thanh dưới cùng</li>
+  <li>Thêm thuật ngữ: chọn ngôn ngữ nguồn/đích, nhập thuật ngữ, nhấn <b>Thêm / Cập nhật</b></li>
+  <li>Thuật ngữ được áp dụng 2 chiều tự động</li>
+  <li>Hỗ trợ <b>Import/Export CSV</b> để chia sẻ</li>
 </ol>
 
-<h3>5. Dinh dang ho tro</h3>
+<h3>5. Định dạng hỗ trợ</h3>
 <ul>
   <li>Excel (.xlsx, .xls)</li>
   <li>Word (.docx)</li>

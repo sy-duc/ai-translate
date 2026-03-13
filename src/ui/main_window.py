@@ -12,7 +12,7 @@ import os
 from PyQt6.QtWidgets import (
     QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QGroupBox,
     QLabel, QComboBox, QListWidget, QPushButton, QFileDialog,
-    QMessageBox, QSizePolicy, QToolButton,
+    QMessageBox, QSizePolicy, QToolButton, QStyle,
 )
 from PyQt6.QtCore import Qt, QSize
 from PyQt6.QtGui import QIcon
@@ -71,19 +71,26 @@ class MainWindow(QMainWindow):
         self._main_layout.setSpacing(6)
         self._main_layout.setContentsMargins(8, 8, 8, 8)
 
-        # --- Settings button (top-right, above control group) ---
-        top_bar = QHBoxLayout()
-        top_bar.addStretch()
+        # --- Control group (main content area) ---
+        control_group = QGroupBox()
+        # Header row: group title + settings gear button
+        header_row = QHBoxLayout()
+        self._control_label = QLabel(f"<b>{t('control_group')}</b>")
+        header_row.addWidget(self._control_label)
+        header_row.addStretch()
         self._settings_btn = QToolButton()
-        self._settings_btn.setText("S")  # Placeholder; ideally use a gear icon
+        self._settings_btn.setIcon(
+            self.style().standardIcon(QStyle.StandardPixmap.SP_FileDialogDetailedView)
+        )
+        self._settings_btn.setText("\u2699")
         self._settings_btn.setToolTip(t("settings_title"))
         self._settings_btn.setFixedSize(28, 28)
         self._settings_btn.clicked.connect(self._on_settings)
-        top_bar.addWidget(self._settings_btn)
-        self._main_layout.addLayout(top_bar)
+        header_row.addWidget(self._settings_btn)
 
-        # --- Control group (main content area) ---
-        control_group = QGroupBox(t("control_group"))
+        control_outer_layout = QVBoxLayout()
+        control_outer_layout.addLayout(header_row)
+
         control_layout = QHBoxLayout()
 
         # LEFT side: labels and dropdowns
@@ -145,11 +152,12 @@ class MainWindow(QMainWindow):
         self._clear_btn.clicked.connect(self._on_clear_files)
         right_layout.addWidget(self._clear_btn)
 
-        # Translate button
+        # Translate button (hidden until files are selected)
         self._translate_btn = QPushButton(t("btn_translate"))
         self._translate_btn.setMinimumWidth(120)
         self._translate_btn.setStyleSheet("font-weight: bold;")
         self._translate_btn.clicked.connect(self._on_translate)
+        self._translate_btn.setVisible(False)
         right_layout.addWidget(self._translate_btn)
 
         # Expand/Collapse button
@@ -161,7 +169,8 @@ class MainWindow(QMainWindow):
         right_layout.addStretch()
         control_layout.addLayout(right_layout)
 
-        control_group.setLayout(control_layout)
+        control_outer_layout.addLayout(control_layout)
+        control_group.setLayout(control_outer_layout)
         self._main_layout.addWidget(control_group)
 
         # --- Expand panel (hidden by default) ---
@@ -211,9 +220,11 @@ class MainWindow(QMainWindow):
         self._file_list.clear()
         if not self._selected_files:
             self._update_file_list_placeholder()
+            self._translate_btn.setVisible(False)
             return
         for file_path in self._selected_files:
             self._file_list.addItem(os.path.basename(file_path))
+        self._translate_btn.setVisible(True)
 
     # --- Slots: Button actions ---
 
@@ -341,12 +352,8 @@ class MainWindow(QMainWindow):
         self.setWindowTitle(t("app_title"))
         self._settings_btn.setToolTip(t("settings_title"))
 
-        # Control group
-        # Find the control group box and update its title
-        for widget in self.centralWidget().findChildren(QGroupBox):
-            if widget != self._expand_panel.findChild(QGroupBox):
-                widget.setTitle(t("control_group"))
-                break
+        # Control group header label
+        self._control_label.setText(f"<b>{t('control_group')}</b>")
 
         self._interface_label.setText(t("interface_label"))
         self._files_label.setText(t("files_label"))
